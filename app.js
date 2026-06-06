@@ -98,6 +98,15 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    service: "YelpCamp",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found", 404));
 });
